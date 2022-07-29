@@ -1,41 +1,31 @@
-# RepositorioTemplate
-Esse repositório é para ser utilizado pelos grupos como um template inicial, da home page do Projeto.
-As seções do Template NÃO DEVEM SER OMITIDAS, sendo TODAS RELEVANTES.
-
-**!! *Atenção: Renomeie o seu repositório para (Ano.Semestre)_(Grupo)_(Paradigma)_(NomeDoProjeto)*. !!** 
-
-Paradigmas:
- - Funcional
- - Logico
- - SMA
-
-**!! *Não coloque os nomes dos alunos no título do repositório*. !!**
-
-**!! *Exemplo de título correto: 2022.1_G1_Logico_ProjetoRoteirosAereos*. !!**
- 
- (Apague esses comentários)
-
-# NomeDoProjeto
+# CaraCara
 
 **Disciplina**: FGA0210 - PARADIGMAS DE PROGRAMAÇÃO - T01 <br>
-**Nro do Grupo**: XX<br>
-**Paradigma**: XXXXXXXXXX<br>
+**Nro do Grupo**: 04<br>
+**Paradigma**: Lógico<br>
 
 ## Alunos
 |Matrícula | Aluno |
 | -- | -- |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
+| 18/0096991  |  Álvaro Leles |
+| 18/0100831  |  Gabriel Avelino |
+| 18/0145088  |  Gabriel Bonifácio |
+| 18/0101617  |  Guilherme de Morais |
+| 18/0102087  |  Ian Fillipe |
+| 18/0113666  |  Ítalo Guimarães |
+| 18/0102656  |  Ítalo Vinicius |
+| 20/0043111  |  Ricardo De Castro |
 
 ## Sobre 
-Descreva o seu projeto em linhas gerais. 
-Use referências, links, que permitam conhecer um pouco mais sobre o projeto.
+<p style="text-indent: 20px; text-align: justify">
+Para a entrega do paradigma lógico, foi escolhido o jogo clássico de tabuleiro Cara A Cara, no qual o objetivo é descobrir as pessoas (peças) do outro jogador, através de dicas sobre as características únicas de cada peça do jogador. Nessa versão, o jogador tentara adivinhar a pessoa que a máquina ira gerar a partir de uma base de dados que foi criada baseada no verdadeiro Cara A cara, advinhando se a pessoa escolhida possui ou não as características.
+</p>
 
 ## Screenshots
 Adicione 2 ou mais screenshots do projeto em termos de interface e/ou funcionamento.
 
 ## Instalação 
-**Linguagens**: xxxxxx<br>
+**Linguagens**: PROLOG<br>
 **Tecnologias**: xxxxxx<br>
 Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
 Insira um manual ou um script para auxiliar ainda mais.
@@ -59,7 +49,14 @@ TEMPO: +/- 15min
 Apresente, brevemente, como cada membro do grupo contribuiu para o projeto.
 |Nome do Membro | Contribuição | Significância da Contribuição para o Projeto (Excelente/Boa/Regular/Ruim/Nula) |
 | -- | -- | -- |
-| Fulano  |  Programação dos Fatos da Base de Conhecimento Lógica | Boa |
+| Álvaro Leles  |  - | preencher |
+| Gabriel Avelino  |  - | preencher |
+| Gabriel Bonifácio  |  - | preencher |
+| Guilherme de Morais  |  - | preencher |
+| Ítalo Alves  |  - | preencher |
+| Ian Fillipe  | - | preencher |
+| Ítalo Vinícius  | - | preencher |
+| Ricardo Castro  | - | preencher |
 
 ## Outros 
 Quaisquer outras informações sobre o projeto podem ser descritas aqui.
