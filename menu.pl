@@ -132,11 +132,12 @@ chutarNome:-
 
 cabeloExiste(L):-
 
-	% ifThenElse(cabelo(True, personagemEscolhido), lista_pessoas = [cabelo(True, X)], lista_pessoas = [cabelo(False, X)])
+	b_getval(personagem, Escolhido),
 
-	%write(L), nl,
+	cabelo(Y, Escolhido),
+	nl, write(Y), nl,
+	findall(X, cabelo(Y, X), L1),
 
-	findall(X, cabelo(true,X), L1),
 	inter(L, L1, L2),
 
 	nl, write('Tem cabelo: '), nl,
@@ -145,9 +146,13 @@ cabeloExiste(L):-
 	jogo(L2), !.
 
 brincoTem(L):-
-	%write(L), nl,
 
-	findall(X, brinco(true,X), L1),
+	b_getval(personagem, Escolhido),
+
+	brinco(Y, Escolhido),
+	nl, write(Y), nl,
+	findall(X, brinco(Y, X), L1),
+
 	inter(L, L1, L2),
 
 	nl, write('Tem brinco: '), nl,
@@ -160,72 +165,58 @@ sexoMulher(L):-
 
 	jogo, !.
 
-sexoHomem([]).
 sexoHomem(L):-
 
 	jogo, !.
 
-cabeloCastanho([]).
 cabeloCastanho(L):-
 
 	jogo, !.
 
-cabeloLoiro([]).
 cabeloLoiro(L):-
 
 	jogo, !.
 
-cabeloPreto([]).
 cabeloPreto(L):-
 
 	jogo, !.
 
-cabeloBranco([]).
 cabeloBranco(L):-
 
 	jogo, !.
 
-cabeloRuivo([]).
 cabeloRuivo(L):-
 
 	jogo, !.
 
-oculosUsa([]).
 oculosUsa(L):-
 
 	jogo, !.
 
-chapeuUsa([]).
 chapeuUsa(L):-
 
 	jogo, !.
 
-boinaUsa([]).
 boinaUsa(L):-
 
 	jogo, !.
 
-boneUsa([]).
 boneUsa(L):-
 
 	jogo, !.
 
-bigodeTem([]).
 bigodeTem(L):-
 
 	jogo, !.
 
-barbaTem([]).
 barbaTem(L):-
 
 	jogo, !.
 
-corBranca([]).
 corBranca(L):-
 
 	jogo, !.
 
-corNegra([]).
 corNegra(L):-
 
 	jogo, !.
