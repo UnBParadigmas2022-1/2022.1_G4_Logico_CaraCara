@@ -53,16 +53,25 @@ escolherPersonagem() :-
 
 	% Printa o personagem sorteado
 	nl, write('O personagem sorteado foi: '), write(Escolhido), nl,
-	b_setval(personagem, Escolhido), !.
+	b_setval(personagem, Escolhido),
+	%b_setval(tentativas, 5),
+	!.
+
+
+subtrai(X) :- 
+	
+	Y is (X-1),
+	b_setval(tentativas, Y),
+	!.
 
 jogo([]).
 jogo(L):-
+	%b_getval(tentativas, X),
+	%nl, write('Voce tem apenas '), write(X), write(' tentativas restantes.'),
 	% printar os personagens restantes
-
 	nl, write('Personagens restantes: '), 
 	write(L), nl,
-
-	%inter(T, L, Listaatual),
+	%subtrai(X),
 
 	% printar o personagem sorteado
 	b_getval(personagem, Escolhido),
@@ -95,7 +104,7 @@ jogo(L):-
 %optionJogo(_, []):-
 %	nl, write('Opcao invalida de jogo'), nl, !.
 
-optionJogo(0, L):- chutarNome(L),!.
+optionJogo(0, L):- chutarNome(),!.
 optionJogo(1, L):- cabeloExiste(L), !.
 optionJogo(2, L):- brincoTem(L),  !.
 optionJogo(3, L):- sexoMulher(L), !.
@@ -123,15 +132,15 @@ inter([H1|T1], L2, [H1|Res]) :-
 inter([_|T1], L2, Res) :-
     inter(T1, L2, Res).
 
-
 chutarNome:-
 	nl, write('Digite o nome do personagem: '),
-	read(Nome),
 	b_getval(personagem, Escolhido),
+	read(Nome), nl,
 	% verificar se o nome eh o mesmo do personagem sorteado (NAO FUNCIONA)
-	nome(Escolhido, Nome),
+	(Nome == Escolhido -> write('Parabens voce acertou o personagem escolhido!') 
+	; write('Poxa. Quem sabe na proxima vez?')), nl,
+	halt,
 	!.
-
 
 cabeloExiste(L):-
 
