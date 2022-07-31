@@ -6,7 +6,6 @@ menu:-  repeat,
 	write('1. Comecar a jogar'), nl,
 	write('2. Tutorial'), nl,
 	write('0. Sair'), nl,
-	%list = [ana, maria],
 	read(X),
 	option(X),
     X == 0,
@@ -29,11 +28,36 @@ introducao:-
 	nl, write('Caso ja saiba como funciona, vamos la!'), nl, write('Sorteamos algum dos 40 personagens e voce precisa adivinhar quem. 
 	Para isso, nos faca algumas das seguintes perguntas digitando o numero correspondente da pergunta (1, 2, etc...):'), nl,
 	consult('./personagens.pl'),
+	escolherPersonagem,
 	jogo, !.
-	
+
+escolherPersonagem() :- 
+	findall(P, pessoa(P), Pessoas),
+
+	% sortear um personagem da lista
+
+	% Acessa tamanho da lista
+	length(Pessoas, Tamanho),
+
+	% Sorteia um numero entre 1 e Tamanho
+	random(0, Tamanho, Indice),
+
+	% Acessa o personagem sorteado
+	nth0(Indice, Pessoas, Escolhido),
+
+	% Printa o personagem sorteado
+	nl, write('O personagem sorteado foi: '), write(Escolhido), nl,
+	b_setval(personagem, Escolhido), !.
+
+
 jogo():-
 	% printar os personagens atuais
 
+	% printar o personagem sorteado
+	b_getval(personagem, Escolhido),
+	nl, write('O personagem sorteado foi: '), write(Escolhido), nl,
+
+	nl, write('0 - Chutar nome'), nl,
 	nl, write('1 - O personagem escolhido tem cabelo?'),
 	nl, write('2 - O personagem escolhido usa brinco?'),
 	nl, write('3 - O personagem escolhido eh uma mulher?'),
@@ -51,11 +75,12 @@ jogo():-
 	nl, write('15 - O personagem escolhido tem barba?'),
 	nl, write('16 - O personagem escolhido tem cor de pele branca?'),
 	nl, write('17 - O personagem escolhido tem cor de pele preta?'), nl,
-	read(Y), 
+	read(Y),
 	optionJogo(Y), 
 	Y == 0,
 	!.
 
+optionJogo(0):- chutarNome,!.
 optionJogo(1):- cabeloExiste, !.
 optionJogo(2):- brincoTem, !.
 optionJogo(3):- sexoMulher, !.
@@ -74,9 +99,21 @@ optionJogo(15):- barbaTem, !.
 optionJogo(16):- corBranca, !.
 optionJogo(17):- corNegra, !.
 
+chutarNome:-
+	nl, write('Digite o nome do personagem: '),
+	read(Nome),
+	b_getval(personagem, Escolhido),
+	% verificar se o nome eh o mesmo do personagem sorteado (NAO FUNCIONA)
+	nome(Escolhido, Nome),
+	!.
+
 cabeloExiste:-
 
 	% ifThenElse(cabelo(True, personagemEscolhido), lista_pessoas = [cabelo(True, X)], lista_pessoas = [cabelo(False, X)])
+
+	findall(X, cabelo(true,X), L),
+	nl, write('Tem cabelo: '), nl,
+	nl, write(L),
 
 	jogo, !.
 
