@@ -54,24 +54,31 @@ escolherPersonagem() :-
 	% Printa o personagem sorteado
 	nl, write('O personagem sorteado foi: '), write(Escolhido), nl,
 	b_setval(personagem, Escolhido),
-	%b_setval(tentativas, 5),
+	b_setval(fim, 0),
+	nb_setval(tentativas, 5),
 	!.
 
-
-subtrai(X) :- 
+subtrai :-
+	nb_getval(tentativas, X),
+    Y is (X - 1),
+	nb_setval(tentativas, Y),
 	
-	Y is (X-1),
-	b_setval(tentativas, Y),
-	!.
+	(Y < 0 ->
+		nl,write('Acabaram suas perguntas! Você precisa chutar um personagem.'),nl,
+		chutarNome()
+		;
+		nl,write('continua'),nl).
 
 jogo([]).
 jogo(L):-
-	%b_getval(tentativas, X),
-	%nl, write('Voce tem apenas '), write(X), write(' tentativas restantes.'),
+
+	nb_getval(tentativas, X),
+	nl, write('Voce tem apenas '), write(X), write(' tentativas restantes.'),
 	% printar os personagens restantes
 	nl, write('Personagens restantes: '), 
 	write(L), nl,
-	%subtrai(X),
+
+	subtrai,	% modifica a variavel global de tentativas, diminuindo 1
 
 	% printar o personagem sorteado
 	b_getval(personagem, Escolhido),
@@ -154,7 +161,7 @@ cabeloExiste(L):-
 		nl, write(Y), nl,
 		findall(X, cabelo(Y, X), L1),
 		inter(L, L1, L2),
-		nl, write('Tem cabelo: '), nl,
+		nl, write('Tem cabelo! '), nl,
 		jogo(L2), !
 		
 		;
@@ -164,7 +171,7 @@ cabeloExiste(L):-
 		nl, write(Y), nl,
 		findall(X, cabelo(Y, X), L1),
 		inter(L, L1, L2),
-		nl, write('Não tem cabelo: '), nl,
+		nl, write('Não tem cabelo! '), nl,
 		jogo(L2), !.
 
 
@@ -180,7 +187,7 @@ brincoTem(L):-
 		nl, write(Y), nl,
 		findall(X, brinco(Y, X), L1),
 		inter(L, L1, L2),
-		nl, write('Usa brinco: '), nl,
+		nl, write('Usa brinco! '), nl,
 		jogo(L2), !
 		
 		;
@@ -190,7 +197,7 @@ brincoTem(L):-
 		nl, write(Y), nl,
 		findall(X, brinco(Y, X), L1),
 		inter(L, L1, L2),
-		nl, write('Não usa brinco: '), nl,
+		nl, write('Não usa brinco! '), nl,
 		jogo(L2), !.
 
 
@@ -206,7 +213,7 @@ sexoMulher(L):-
 		nl, write(Y), nl,
 		findall(X, sexofeminino(Y, X), L1),
 		inter(L, L1, L2),
-		nl, write('É do sexo feminino: '), nl,
+		nl, write('É do sexo feminino! '), nl,
 		jogo(L2), !
 		
 		;
@@ -216,7 +223,7 @@ sexoMulher(L):-
 		nl, write(Y), nl,
 		findall(X, sexofeminino(Y, X), L1),
 		inter(L, L1, L2),
-		nl, write('Não é do sexo feminino: '), nl,
+		nl, write('Não é do sexo feminino! '), nl,
 		jogo(L2), !.
 
 sexoHomem(L):-
@@ -231,7 +238,7 @@ sexoHomem(L):-
 		nl, write(Y), nl,
 		findall(X, sexomasculino(Y, X), L1),
 		inter(L, L1, L2),
-		nl, write('É do sexo masculino: '), nl,
+		nl, write('É do sexo masculino! '), nl,
 		jogo(L2), !
 		
 		;
@@ -241,7 +248,7 @@ sexoHomem(L):-
 		nl, write(Y), nl,
 		findall(X, sexomasculino(Y, X), L1),
 		inter(L, L1, L2),
-		nl, write('Não é do sexo masculino: '), nl,
+		nl, write('Não é do sexo masculino! '), nl,
 		jogo(L2), !.
 
 cabeloCastanho(L):-
@@ -256,7 +263,7 @@ cabeloCastanho(L):-
 		nl, write(Y), nl,
 		findall(X, cordecabelocastanho(Y, X), L1),
 		inter(L, L1, L2),
-		nl, write('Cabelo castanho: '), nl,
+		nl, write('Cabelo castanho! '), nl,
 		jogo(L2), !
 		
 		;
@@ -266,7 +273,7 @@ cabeloCastanho(L):-
 		nl, write(Y), nl,
 		findall(X, cordecabelocastanho(Y, X), L1),
 		inter(L, L1, L2),
-		nl, write('Não tem cabelo castanho: '), nl,
+		nl, write('Não tem cabelo castanho! '), nl,
 		jogo(L2), !.
 
 
@@ -282,7 +289,7 @@ cabeloLoiro(L):-
 		nl, write(Y), nl,
 		findall(X, cordecabeloloiro(Y, X), L1),
 		inter(L, L1, L2),
-		nl, write('Cabelo loiro: '), nl,
+		nl, write('Cabelo loiro! '), nl,
 		jogo(L2), !
 		
 		;
@@ -292,7 +299,7 @@ cabeloLoiro(L):-
 		nl, write(Y), nl,
 		findall(X, cordecabeloloiro(Y, X), L1),
 		inter(L, L1, L2),
-		nl, write('Não tem cabelo loiro: '), nl,
+		nl, write('Não tem cabelo loiro! '), nl,
 		jogo(L2), !.
 
 cabeloPreto(L):-
@@ -307,7 +314,7 @@ cabeloPreto(L):-
 		nl, write(Y), nl,
 		findall(X, cordecabelopreto(Y, X), L1),
 		inter(L, L1, L2),
-		nl, write('Cabelo preto: '), nl,
+		nl, write('Cabelo preto! '), nl,
 		jogo(L2), !
 		
 		;
@@ -317,7 +324,7 @@ cabeloPreto(L):-
 		nl, write(Y), nl,
 		findall(X, cordecabelopreto(Y, X), L1),
 		inter(L, L1, L2),
-		nl, write('Não tem cabelo preto: '), nl,
+		nl, write('Não tem cabelo preto! '), nl,
 		jogo(L2), !.
 
 
@@ -333,7 +340,7 @@ cabeloBranco(L):-
 		nl, write(Y), nl,
 		findall(X, cordecabelobranco(Y, X), L1),
 		inter(L, L1, L2),
-		nl, write('Cabelo branco: '), nl,
+		nl, write('Cabelo branco! '), nl,
 		jogo(L2), !
 		
 		;
@@ -343,7 +350,7 @@ cabeloBranco(L):-
 		nl, write(Y), nl,
 		findall(X, cordecabelobranco(Y, X), L1),
 		inter(L, L1, L2),
-		nl, write('Não tem cabelo branco: '), nl,
+		nl, write('Não tem cabelo branco! '), nl,
 		jogo(L2), !.
 
 cabeloRuivo(L):-
@@ -358,7 +365,7 @@ cabeloRuivo(L):-
 		nl, write(Y), nl,
 		findall(X, cordecabeloruivo(Y, X), L1),
 		inter(L, L1, L2),
-		nl, write('Cabelo ruivo: '), nl,
+		nl, write('Cabelo ruivo! '), nl,
 		jogo(L2), !
 		
 		;
@@ -368,7 +375,7 @@ cabeloRuivo(L):-
 		nl, write(Y), nl,
 		findall(X, cordecabeloruivo(Y, X), L1),
 		inter(L, L1, L2),
-		nl, write('Não tem cabelo ruivo: '), nl,
+		nl, write('Não tem cabelo ruivo! '), nl,
 		jogo(L2), !.
 
 oculosUsa(L):-
@@ -383,7 +390,7 @@ oculosUsa(L):-
 		nl, write(Y), nl,
 		findall(X, oculos(Y, X), L1),
 		inter(L, L1, L2),
-		nl, write('Usa oculos: '), nl,
+		nl, write('Usa oculos! '), nl,
 		jogo(L2), !
 		
 		;
@@ -393,7 +400,7 @@ oculosUsa(L):-
 		nl, write(Y), nl,
 		findall(X, oculos(Y, X), L1),
 		inter(L, L1, L2),
-		nl, write('Não usa oculos: '), nl,
+		nl, write('Não usa oculos! '), nl,
 		jogo(L2), !.
 
 chapeuUsa(L):-
@@ -408,7 +415,7 @@ chapeuUsa(L):-
 		nl, write(Y), nl,
 		findall(X, chapeu(Y, X), L1),
 		inter(L, L1, L2),
-		nl, write('Usa chapeu: '), nl,
+		nl, write('Usa chapeu! '), nl,
 		jogo(L2), !
 		
 		;
@@ -418,7 +425,7 @@ chapeuUsa(L):-
 		nl, write(Y), nl,
 		findall(X, chapeu(Y, X), L1),
 		inter(L, L1, L2),
-		nl, write('Não usa chapeu: '), nl,
+		nl, write('Não usa chapeu! '), nl,
 		jogo(L2), !.
 
 
@@ -434,7 +441,7 @@ boinaUsa(L):-
 		nl, write(Y), nl,
 		findall(X, boina(Y, X), L1),
 		inter(L, L1, L2),
-		nl, write('Usa boina: '), nl,
+		nl, write('Usa boina! '), nl,
 		jogo(L2), !
 		
 		;
@@ -444,7 +451,7 @@ boinaUsa(L):-
 		nl, write(Y), nl,
 		findall(X, boina(Y, X), L1),
 		inter(L, L1, L2),
-		nl, write('Não usa boina: '), nl,
+		nl, write('Não usa boina! '), nl,
 		jogo(L2), !.
 
 
@@ -460,7 +467,7 @@ boneUsa(L):-
 		nl, write(Y), nl,
 		findall(X, bone(Y, X), L1),
 		inter(L, L1, L2),
-		nl, write('Usa bone: '), nl,
+		nl, write('Usa bone! '), nl,
 		jogo(L2), !
 		
 		;
@@ -470,7 +477,7 @@ boneUsa(L):-
 		nl, write(Y), nl,
 		findall(X, bone(Y, X), L1),
 		inter(L, L1, L2),
-		nl, write('Não usa bone: '), nl,
+		nl, write('Não usa bone! '), nl,
 		jogo(L2), !.
 
 bigodeTem(L):-
@@ -485,7 +492,7 @@ bigodeTem(L):-
 		nl, write(Y), nl,
 		findall(X, bigode(Y, X), L1),
 		inter(L, L1, L2),
-		nl, write('Tem bigode: '), nl,
+		nl, write('Tem bigode! '), nl,
 		jogo(L2), !
 		
 		;
@@ -495,7 +502,7 @@ bigodeTem(L):-
 		nl, write(Y), nl,
 		findall(X, bigode(Y, X), L1),
 		inter(L, L1, L2),
-		nl, write('Não tem bigode: '), nl,
+		nl, write('Não tem bigode! '), nl,
 		jogo(L2), !.
 
 barbaTem(L):-
@@ -510,7 +517,7 @@ barbaTem(L):-
 		nl, write(Y), nl,
 		findall(X, barba(Y, X), L1),
 		inter(L, L1, L2),
-		nl, write('Tem barba: '), nl,
+		nl, write('Tem barba! '), nl,
 		jogo(L2), !
 		
 		;
@@ -520,7 +527,7 @@ barbaTem(L):-
 		nl, write(Y), nl,
 		findall(X, barba(Y, X), L1),
 		inter(L, L1, L2),
-		nl, write('Não tem barba: '), nl,
+		nl, write('Não tem barba! '), nl,
 		jogo(L2), !.
 
 corBranca(L):-
@@ -535,7 +542,7 @@ corBranca(L):-
 		nl, write(Y), nl,
 		findall(X, cordepelebranca(Y, X), L1),
 		inter(L, L1, L2),
-		nl, write('Tem cor de pele Branca: '), nl,
+		nl, write('Tem cor de pele Branca! '), nl,
 		jogo(L2), !
 		
 		;
@@ -545,7 +552,7 @@ corBranca(L):-
 		nl, write(Y), nl,
 		findall(X, cordepelebranca(Y, X), L1),
 		inter(L, L1, L2),
-		nl, write('Não tem cor de pele branca: '), nl,
+		nl, write('Não tem cor de pele branca! '), nl,
 		jogo(L2), !.
 
 corNegra(L):-
@@ -560,7 +567,7 @@ corNegra(L):-
 		nl, write(Y), nl,
 		findall(X, cordepelenegra(Y, X), L1),
 		inter(L, L1, L2),
-		nl, write('Tem cor de pele negra: '), nl,
+		nl, write('Tem cor de pele negra! '), nl,
 		jogo(L2), !
 		
 		;
@@ -570,7 +577,7 @@ corNegra(L):-
 		nl, write(Y), nl,
 		findall(X, cordepelenegra(Y, X), L1),
 		inter(L, L1, L2),
-		nl, write('Não tem cor de pele negra: '), nl,
+		nl, write('Não tem cor de pele negra! '), nl,
 		jogo(L2), !.
 
 
