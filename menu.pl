@@ -23,13 +23,16 @@ tutorial:-
 	nl, write('Bem-vindo ao tutorial do jogo Cara a Cara'), nl,
 	!.
 
+
 introducao:-
 	nl, write('Seja bem-vindo ao jogo Cara a Cara.'), nl, write('Sugiro que veja o tutorial antes de jogarmos (basta apertar 2).'), nl,
 	nl, write('Caso ja saiba como funciona, vamos la!'), nl, write('Sorteamos algum dos 40 personagens e voce precisa adivinhar quem. 
 	Para isso, nos faca algumas das seguintes perguntas digitando o numero correspondente da pergunta (1, 2, etc...):'), nl,
 	consult('./personagens.pl'),
 	escolherPersonagem,
-	jogo, !.
+	findall(P, pessoa(P), L),
+	jogo(L), !.
+
 
 escolherPersonagem() :- 
 	findall(P, pessoa(P), Pessoas),
@@ -49,9 +52,14 @@ escolherPersonagem() :-
 	nl, write('O personagem sorteado foi: '), write(Escolhido), nl,
 	b_setval(personagem, Escolhido), !.
 
-
-jogo():-
+jogo([]).
+jogo(L):-
 	% printar os personagens atuais
+
+	nl, write('Personagens atuais: '), 
+	write(L), nl,
+
+	%inter(T, L, Listaatual),
 
 	% printar o personagem sorteado
 	b_getval(personagem, Escolhido),
@@ -76,28 +84,42 @@ jogo():-
 	nl, write('16 - O personagem escolhido tem cor de pele branca?'),
 	nl, write('17 - O personagem escolhido tem cor de pele preta?'), nl,
 	read(Y),
-	optionJogo(Y), 
-	Y == 0,
+	optionJogo(Y, L), 
+	%Y == 0,
 	!.
 
-optionJogo(0):- chutarNome,!.
-optionJogo(1):- cabeloExiste, !.
-optionJogo(2):- brincoTem, !.
-optionJogo(3):- sexoMulher, !.
-optionJogo(4):- sexoHomem, !.
-optionJogo(5):- cabeloCastanho, !.
-optionJogo(6):- cabeloLoiro, !.
-optionJogo(7):- cabeloPreto, !.
-optionJogo(8):- cabeloBranco, !.
-optionJogo(9):- cabeloRuivo, !.
-optionJogo(10):- oculosUsa, !.
-optionJogo(11):- chapeuUsa, !.
-optionJogo(12):- boinaUsa, !.
-optionJogo(13):- boneUsa, !.
-optionJogo(14):- bigodeTem, !.
-optionJogo(15):- barbaTem, !.
-optionJogo(16):- corBranca, !.
-optionJogo(17):- corNegra, !.
+
+%optionJogo(_, []):-
+%	nl, write('Opcao invalida de jogo'), nl, !.
+
+%optionJogo(0, L):- chutarNome(L),!.
+optionJogo(1, L):- cabeloExiste(L), !.
+optionJogo(2, L):- brincoTem(L),  !.
+%optionJogo(3, L):- sexoMulher(L), !.
+%optionJogo(4, L):- sexoHomem(L), !.
+%optionJogo(5, L):- cabeloCastanho(L), !.
+%optionJogo(6, L):- cabeloLoiro(L), !.
+%optionJogo(7, L):- cabeloPreto(L), !.
+%optionJogo(8, L):- cabeloBranco(L), !.
+%optionJogo(9, L):- cabeloRuivo(L), !.
+%optionJogo(10, L):- oculosUsa(L), !.
+%optionJogo(11, L):- chapeuUsa(L), !.
+%optionJogo(12, L):- boinaUsa(L), !.
+%optionJogo(13, L):- boneUsa(L), !.
+%optionJogo(14, L):- bigodeTem(L), !.
+%optionJogo(15, L):- barbaTem(L), !.
+%optionJogo(16, L):- corBranca(L), !.
+%optionJogo(17, L):- corNegra(L), !.
+
+
+
+inter([], _, []).
+inter([H1|T1], L2, [H1|Res]) :-
+    member(H1, L2),
+    inter(T1, L2, Res).
+inter([_|T1], L2, Res) :-
+    inter(T1, L2, Res).
+
 
 chutarNome:-
 	nl, write('Digite o nome do personagem: '),
@@ -107,77 +129,104 @@ chutarNome:-
 	nome(Escolhido, Nome),
 	!.
 
-cabeloExiste:-
+
+cabeloExiste(L):-
 
 	% ifThenElse(cabelo(True, personagemEscolhido), lista_pessoas = [cabelo(True, X)], lista_pessoas = [cabelo(False, X)])
 
-	findall(X, cabelo(true,X), L),
+	%write(L), nl,
+
+	findall(X, cabelo(true,X), L1),
+	inter(L, L1, L2),
+
 	nl, write('Tem cabelo: '), nl,
-	nl, write(L),
+	nl, write(L1),
+
+	jogo(L2), !.
+
+brincoTem(L):-
+	%write(L), nl,
+
+	findall(X, brinco(true,X), L1),
+	inter(L, L1, L2),
+
+	nl, write('Tem brinco: '), nl,
+	nl, write(L1),
+
+	jogo(L2), !.
+
+
+sexoMulher(L):-
 
 	jogo, !.
 
-brincoTem:-
+sexoHomem([]).
+sexoHomem(L):-
 
 	jogo, !.
 
-sexoMulher:-
+cabeloCastanho([]).
+cabeloCastanho(L):-
 
 	jogo, !.
 
-sexoHomem:-
+cabeloLoiro([]).
+cabeloLoiro(L):-
 
 	jogo, !.
 
-cabeloCastanho:-
+cabeloPreto([]).
+cabeloPreto(L):-
 
 	jogo, !.
 
-cabeloLoiro:-
+cabeloBranco([]).
+cabeloBranco(L):-
 
 	jogo, !.
 
-cabeloPreto:-
+cabeloRuivo([]).
+cabeloRuivo(L):-
 
 	jogo, !.
 
-cabeloBranco:-
+oculosUsa([]).
+oculosUsa(L):-
 
 	jogo, !.
 
-cabeloRuivo:-
+chapeuUsa([]).
+chapeuUsa(L):-
 
 	jogo, !.
 
-oculosUsa:-
+boinaUsa([]).
+boinaUsa(L):-
 
 	jogo, !.
 
-chapeuUsa:-
+boneUsa([]).
+boneUsa(L):-
 
 	jogo, !.
 
-boinaUsa:-
+bigodeTem([]).
+bigodeTem(L):-
 
 	jogo, !.
 
-boneUsa:-
+barbaTem([]).
+barbaTem(L):-
 
 	jogo, !.
 
-bigodeTem:-
+corBranca([]).
+corBranca(L):-
 
 	jogo, !.
 
-barbaTem:-
-
-	jogo, !.
-
-corBranca:-
-
-	jogo, !.
-
-corNegra:-
+corNegra([]).
+corNegra(L):-
 
 	jogo, !.
 
