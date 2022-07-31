@@ -20,10 +20,25 @@ option(_):- write('Opcao invalida'), nl, !.
 % sortear um personagem da lista
 
 tutorial:-
-	nl, write('Bem-vindo ao tutorial do jogo Cara a Cara'), nl,
+	nl, write('Bem-vindo ao tutorial do jogo cara-a-cara'), nl,
+	nl, write('O jogo cara-a-cara tem como objetivo adivinhar uma pessoa de acordo com suas características'),nl,
+	nl, write('O jogo vai sortear aleaórioamente uma pessoa e você tem que adivinhar com base nas características dela'),nl,
+	nl, write('Você tem direito a cinco perguntas e o jogo vai atualizando a lista de nomes de acordo com as suas perguntas, então pense bem na hora de escolher elas'),nl,
+	nl, write('Quando tiver certeza da sua resposta, você tem até dois palpites para descobrir a pessoa sorteada'),nl,
+	nl, write('Agora que você já sabe como jogar, boa sorte'),nl,
+	menututorial,
 	!.
 
+menututorial:- 
+	nl, write('1. Começar a jogar'),nl,
+	write('2. Voltar ao menu principal'),nl,
+	read(Z),
+	opcao(Z),
+	!.
 
+	opcao(1):- introducao, !.
+	opcao(2):- menu, !.
+	
 introducao:-
 	% Acessa tamanho da lista
 	length(Pessoas, TamanhoLista),
