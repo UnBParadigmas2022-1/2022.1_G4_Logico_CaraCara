@@ -25,8 +25,11 @@ tutorial:-
 
 
 introducao:-
+	% Acessa tamanho da lista
+	length(Pessoas, TamanhoLista),
+
 	nl, write('Seja bem-vindo ao jogo Cara a Cara.'), nl, write('Sugiro que veja o tutorial antes de jogarmos (basta apertar 2).'), nl,
-	nl, write('Caso ja saiba como funciona, vamos la!'), nl, write('Sorteamos algum dos 40 personagens e voce precisa adivinhar quem. 
+	nl, write('Caso ja saiba como funciona, vamos la!'), nl, write('Sorteamos algum dos'), write(TamanhoLista), write(' personagens e voce precisa adivinhar quem. 
 	Para isso, nos faca algumas das seguintes perguntas digitando o numero correspondente da pergunta (1, 2, etc...):'), nl,
 	consult('./personagens.pl'),
 	escolherPersonagem,
@@ -54,9 +57,9 @@ escolherPersonagem() :-
 
 jogo([]).
 jogo(L):-
-	% printar os personagens atuais
+	% printar os personagens restantes
 
-	nl, write('Personagens atuais: '), 
+	nl, write('Personagens restantes: '), 
 	write(L), nl,
 
 	%inter(T, L, Listaatual),
@@ -92,24 +95,24 @@ jogo(L):-
 %optionJogo(_, []):-
 %	nl, write('Opcao invalida de jogo'), nl, !.
 
-%optionJogo(0, L):- chutarNome(L),!.
+optionJogo(0, L):- chutarNome(L),!.
 optionJogo(1, L):- cabeloExiste(L), !.
 optionJogo(2, L):- brincoTem(L),  !.
-%optionJogo(3, L):- sexoMulher(L), !.
-%optionJogo(4, L):- sexoHomem(L), !.
-%optionJogo(5, L):- cabeloCastanho(L), !.
-%optionJogo(6, L):- cabeloLoiro(L), !.
-%optionJogo(7, L):- cabeloPreto(L), !.
-%optionJogo(8, L):- cabeloBranco(L), !.
-%optionJogo(9, L):- cabeloRuivo(L), !.
-%optionJogo(10, L):- oculosUsa(L), !.
-%optionJogo(11, L):- chapeuUsa(L), !.
-%optionJogo(12, L):- boinaUsa(L), !.
-%optionJogo(13, L):- boneUsa(L), !.
-%optionJogo(14, L):- bigodeTem(L), !.
-%optionJogo(15, L):- barbaTem(L), !.
-%optionJogo(16, L):- corBranca(L), !.
-%optionJogo(17, L):- corNegra(L), !.
+optionJogo(3, L):- sexoMulher(L), !.
+optionJogo(4, L):- sexoHomem(L), !.
+optionJogo(5, L):- cabeloCastanho(L), !.
+optionJogo(6, L):- cabeloLoiro(L), !.
+optionJogo(7, L):- cabeloPreto(L), !.
+optionJogo(8, L):- cabeloBranco(L), !.
+optionJogo(9, L):- cabeloRuivo(L), !.
+optionJogo(10, L):- oculosUsa(L), !.
+optionJogo(11, L):- chapeuUsa(L), !.
+optionJogo(12, L):- boinaUsa(L), !.
+optionJogo(13, L):- boneUsa(L), !.
+optionJogo(14, L):- bigodeTem(L), !.
+optionJogo(15, L):- barbaTem(L), !.
+optionJogo(16, L):- corBranca(L), !.
+optionJogo(17, L):- corNegra(L), !.
 
 
 
@@ -133,93 +136,433 @@ chutarNome:-
 cabeloExiste(L):-
 
 	b_getval(personagem, Escolhido),
+	cabelo(Y, Escolhido), 										    % x recebe cor do cabelo
 
-	cabelo(Y, Escolhido),
-	nl, write(Y), nl,
-	findall(X, cabelo(Y, X), L1),
+	Y ->
 
-	inter(L, L1, L2),
+		b_getval(personagem, Escolhido),
+		cabelo(Y, Escolhido),
+		nl, write(Y), nl,
+		findall(X, cabelo(Y, X), L1),
+		inter(L, L1, L2),
+		nl, write('Tem cabelo: '), nl,
+		jogo(L2), !
+		
+		;
 
-	nl, write('Tem cabelo: '), nl,
-	nl, write(L1),
+		b_getval(personagem, Escolhido),
+		cabelo(Y, Escolhido),
+		nl, write(Y), nl,
+		findall(X, cabelo(Y, X), L1),
+		inter(L, L1, L2),
+		nl, write('Não tem cabelo: '), nl,
+		jogo(L2), !.
 
-	jogo(L2), !.
 
 brincoTem(L):-
 
 	b_getval(personagem, Escolhido),
+	brinco(Y, Escolhido), 										    % x recebe cor do brinco
 
-	brinco(Y, Escolhido),
-	nl, write(Y), nl,
-	findall(X, brinco(Y, X), L1),
+	Y ->
 
-	inter(L, L1, L2),
+		b_getval(personagem, Escolhido),
+		brinco(Y, Escolhido),
+		nl, write(Y), nl,
+		findall(X, brinco(Y, X), L1),
+		inter(L, L1, L2),
+		nl, write('Usa brinco: '), nl,
+		jogo(L2), !
+		
+		;
 
-	nl, write('Tem brinco: '), nl,
-	nl, write(L1),
-
-	jogo(L2), !.
+		b_getval(personagem, Escolhido),
+		brinco(Y, Escolhido),
+		nl, write(Y), nl,
+		findall(X, brinco(Y, X), L1),
+		inter(L, L1, L2),
+		nl, write('Não usa brinco: '), nl,
+		jogo(L2), !.
 
 
 sexoMulher(L):-
 
-	jogo, !.
+	b_getval(personagem, Escolhido),
+	sexofeminino(Y, Escolhido), 										    
+
+	Y ->
+
+		b_getval(personagem, Escolhido),
+		sexofeminino(Y, Escolhido),
+		nl, write(Y), nl,
+		findall(X, sexofeminino(Y, X), L1),
+		inter(L, L1, L2),
+		nl, write('É do sexo feminino: '), nl,
+		jogo(L2), !
+		
+		;
+
+		b_getval(personagem, Escolhido),
+		sexofeminino(Y, Escolhido),
+		nl, write(Y), nl,
+		findall(X, sexofeminino(Y, X), L1),
+		inter(L, L1, L2),
+		nl, write('Não é do sexo feminino: '), nl,
+		jogo(L2), !.
 
 sexoHomem(L):-
 
-	jogo, !.
+	b_getval(personagem, Escolhido),
+	sexomasculino(Y, Escolhido), 										    
+
+	Y ->
+
+		b_getval(personagem, Escolhido),
+		sexomasculino(Y, Escolhido),
+		nl, write(Y), nl,
+		findall(X, sexomasculino(Y, X), L1),
+		inter(L, L1, L2),
+		nl, write('É do sexo masculino: '), nl,
+		jogo(L2), !
+		
+		;
+
+		b_getval(personagem, Escolhido),
+		sexomasculino(Y, Escolhido),
+		nl, write(Y), nl,
+		findall(X, sexomasculino(Y, X), L1),
+		inter(L, L1, L2),
+		nl, write('Não é do sexo masculino: '), nl,
+		jogo(L2), !.
 
 cabeloCastanho(L):-
 
-	jogo, !.
+	b_getval(personagem, Escolhido),
+	cordecabelocastanho(Y, Escolhido), 										    % x recebe cor do cabelo
+
+	Y ->
+
+		b_getval(personagem, Escolhido),
+		cordecabelocastanho(Y, Escolhido),
+		nl, write(Y), nl,
+		findall(X, cordecabelocastanho(Y, X), L1),
+		inter(L, L1, L2),
+		nl, write('Cabelo castanho: '), nl,
+		jogo(L2), !
+		
+		;
+
+		b_getval(personagem, Escolhido),
+		cordecabelocastanho(Y, Escolhido),
+		nl, write(Y), nl,
+		findall(X, cordecabelocastanho(Y, X), L1),
+		inter(L, L1, L2),
+		nl, write('Não tem cabelo castanho: '), nl,
+		jogo(L2), !.
+
 
 cabeloLoiro(L):-
 
-	jogo, !.
+	b_getval(personagem, Escolhido),
+	cordecabeloloiro(Y, Escolhido), 										    % x recebe cor do cabelo
+
+	Y ->
+
+		b_getval(personagem, Escolhido),
+		cordecabeloloiro(Y, Escolhido),
+		nl, write(Y), nl,
+		findall(X, cordecabeloloiro(Y, X), L1),
+		inter(L, L1, L2),
+		nl, write('Cabelo loiro: '), nl,
+		jogo(L2), !
+		
+		;
+
+		b_getval(personagem, Escolhido),
+		cordecabeloloiro(Y, Escolhido),
+		nl, write(Y), nl,
+		findall(X, cordecabeloloiro(Y, X), L1),
+		inter(L, L1, L2),
+		nl, write('Não tem cabelo loiro: '), nl,
+		jogo(L2), !.
 
 cabeloPreto(L):-
 
-	jogo, !.
+	b_getval(personagem, Escolhido),
+	cordecabelopreto(Y, Escolhido), 										    % x recebe cor do cabelo
+
+	Y ->
+
+		b_getval(personagem, Escolhido),
+		cordecabelopreto(Y, Escolhido),
+		nl, write(Y), nl,
+		findall(X, cordecabelopreto(Y, X), L1),
+		inter(L, L1, L2),
+		nl, write('Cabelo preto: '), nl,
+		jogo(L2), !
+		
+		;
+
+		b_getval(personagem, Escolhido),
+		cordecabelopreto(Y, Escolhido),
+		nl, write(Y), nl,
+		findall(X, cordecabelopreto(Y, X), L1),
+		inter(L, L1, L2),
+		nl, write('Não tem cabelo preto: '), nl,
+		jogo(L2), !.
+
 
 cabeloBranco(L):-
 
-	jogo, !.
+	b_getval(personagem, Escolhido),
+	cordecabelobranco(Y, Escolhido), 										    % x recebe cor do cabelo
+
+	Y ->
+
+		b_getval(personagem, Escolhido),
+		cordecabelobranco(Y, Escolhido),
+		nl, write(Y), nl,
+		findall(X, cordecabelobranco(Y, X), L1),
+		inter(L, L1, L2),
+		nl, write('Cabelo branco: '), nl,
+		jogo(L2), !
+		
+		;
+
+		b_getval(personagem, Escolhido),
+		cordecabelobranco(Y, Escolhido),
+		nl, write(Y), nl,
+		findall(X, cordecabelobranco(Y, X), L1),
+		inter(L, L1, L2),
+		nl, write('Não tem cabelo branco: '), nl,
+		jogo(L2), !.
 
 cabeloRuivo(L):-
 
-	jogo, !.
+	b_getval(personagem, Escolhido),
+	cordecabeloruivo(Y, Escolhido), 										    % x recebe cor do cabelo
+
+	Y ->
+
+		b_getval(personagem, Escolhido),
+		cordecabeloruivo(Y, Escolhido),
+		nl, write(Y), nl,
+		findall(X, cordecabeloruivo(Y, X), L1),
+		inter(L, L1, L2),
+		nl, write('Cabelo ruivo: '), nl,
+		jogo(L2), !
+		
+		;
+
+		b_getval(personagem, Escolhido),
+		cordecabeloruivo(Y, Escolhido),
+		nl, write(Y), nl,
+		findall(X, cordecabeloruivo(Y, X), L1),
+		inter(L, L1, L2),
+		nl, write('Não tem cabelo ruivo: '), nl,
+		jogo(L2), !.
 
 oculosUsa(L):-
 
-	jogo, !.
+	b_getval(personagem, Escolhido),
+	oculos(Y, Escolhido), 										    % x recebe cor do cabelo
+
+	Y ->
+
+		b_getval(personagem, Escolhido),
+		oculos(Y, Escolhido),
+		nl, write(Y), nl,
+		findall(X, oculos(Y, X), L1),
+		inter(L, L1, L2),
+		nl, write('Usa oculos: '), nl,
+		jogo(L2), !
+		
+		;
+
+		b_getval(personagem, Escolhido),
+		oculos(Y, Escolhido),
+		nl, write(Y), nl,
+		findall(X, oculos(Y, X), L1),
+		inter(L, L1, L2),
+		nl, write('Não usa oculos: '), nl,
+		jogo(L2), !.
 
 chapeuUsa(L):-
 
-	jogo, !.
+	b_getval(personagem, Escolhido),
+	chapeu(Y, Escolhido), 										    % x recebe cor do cabelo
+
+	Y ->
+
+		b_getval(personagem, Escolhido),
+		chapeu(Y, Escolhido),
+		nl, write(Y), nl,
+		findall(X, chapeu(Y, X), L1),
+		inter(L, L1, L2),
+		nl, write('Usa chapeu: '), nl,
+		jogo(L2), !
+		
+		;
+
+		b_getval(personagem, Escolhido),
+		chapeu(Y, Escolhido),
+		nl, write(Y), nl,
+		findall(X, chapeu(Y, X), L1),
+		inter(L, L1, L2),
+		nl, write('Não usa chapeu: '), nl,
+		jogo(L2), !.
+
 
 boinaUsa(L):-
 
-	jogo, !.
+	b_getval(personagem, Escolhido),
+	boina(Y, Escolhido), 										    % x recebe cor do cabelo
+
+	Y ->
+
+		b_getval(personagem, Escolhido),
+		boina(Y, Escolhido),
+		nl, write(Y), nl,
+		findall(X, boina(Y, X), L1),
+		inter(L, L1, L2),
+		nl, write('Usa boina: '), nl,
+		jogo(L2), !
+		
+		;
+
+		b_getval(personagem, Escolhido),
+		boina(Y, Escolhido),
+		nl, write(Y), nl,
+		findall(X, boina(Y, X), L1),
+		inter(L, L1, L2),
+		nl, write('Não usa boina: '), nl,
+		jogo(L2), !.
+
 
 boneUsa(L):-
 
-	jogo, !.
+	b_getval(personagem, Escolhido),
+	bone(Y, Escolhido), 										    % x recebe cor do cabelo
+
+	Y ->
+
+		b_getval(personagem, Escolhido),
+		bone(Y, Escolhido),
+		nl, write(Y), nl,
+		findall(X, bone(Y, X), L1),
+		inter(L, L1, L2),
+		nl, write('Usa bone: '), nl,
+		jogo(L2), !
+		
+		;
+
+		b_getval(personagem, Escolhido),
+		bone(Y, Escolhido),
+		nl, write(Y), nl,
+		findall(X, bone(Y, X), L1),
+		inter(L, L1, L2),
+		nl, write('Não usa bone: '), nl,
+		jogo(L2), !.
 
 bigodeTem(L):-
 
-	jogo, !.
+	b_getval(personagem, Escolhido),
+	bigode(Y, Escolhido), 										    % x recebe cor do cabelo
+
+	Y ->
+
+		b_getval(personagem, Escolhido),
+		bigode(Y, Escolhido),
+		nl, write(Y), nl,
+		findall(X, bigode(Y, X), L1),
+		inter(L, L1, L2),
+		nl, write('Tem bigode: '), nl,
+		jogo(L2), !
+		
+		;
+
+		b_getval(personagem, Escolhido),
+		bigode(Y, Escolhido),
+		nl, write(Y), nl,
+		findall(X, bigode(Y, X), L1),
+		inter(L, L1, L2),
+		nl, write('Não tem bigode: '), nl,
+		jogo(L2), !.
 
 barbaTem(L):-
 
-	jogo, !.
+	b_getval(personagem, Escolhido),
+	barba(Y, Escolhido), 										    % x recebe cor do cabelo
+
+	Y ->
+
+		b_getval(personagem, Escolhido),
+		barba(Y, Escolhido),
+		nl, write(Y), nl,
+		findall(X, barba(Y, X), L1),
+		inter(L, L1, L2),
+		nl, write('Tem barba: '), nl,
+		jogo(L2), !
+		
+		;
+
+		b_getval(personagem, Escolhido),
+		barba(Y, Escolhido),
+		nl, write(Y), nl,
+		findall(X, barba(Y, X), L1),
+		inter(L, L1, L2),
+		nl, write('Não tem barba: '), nl,
+		jogo(L2), !.
 
 corBranca(L):-
 
-	jogo, !.
+	b_getval(personagem, Escolhido),
+	cordepelebranca(Y, Escolhido), 										    % x recebe cor do cabelo
+
+	Y ->
+
+		b_getval(personagem, Escolhido),
+		cordepelebranca(Y, Escolhido),
+		nl, write(Y), nl,
+		findall(X, cordepelebranca(Y, X), L1),
+		inter(L, L1, L2),
+		nl, write('Tem cor de pele Branca: '), nl,
+		jogo(L2), !
+		
+		;
+
+		b_getval(personagem, Escolhido),
+		cordepelebranca(Y, Escolhido),
+		nl, write(Y), nl,
+		findall(X, cordepelebranca(Y, X), L1),
+		inter(L, L1, L2),
+		nl, write('Não tem cor de pele branca: '), nl,
+		jogo(L2), !.
 
 corNegra(L):-
 
-	jogo, !.
+	b_getval(personagem, Escolhido),
+	cordepelenegra(Y, Escolhido), 										    % x recebe cor do cabelo
+
+	Y ->
+
+		b_getval(personagem, Escolhido),
+		cordepelenegra(Y, Escolhido),
+		nl, write(Y), nl,
+		findall(X, cordepelenegra(Y, X), L1),
+		inter(L, L1, L2),
+		nl, write('Tem cor de pele negra: '), nl,
+		jogo(L2), !
+		
+		;
+
+		b_getval(personagem, Escolhido),
+		cordepelenegra(Y, Escolhido),
+		nl, write(Y), nl,
+		findall(X, cordepelenegra(Y, X), L1),
+		inter(L, L1, L2),
+		nl, write('Não tem cor de pele negra: '), nl,
+		jogo(L2), !.
 
 
 
