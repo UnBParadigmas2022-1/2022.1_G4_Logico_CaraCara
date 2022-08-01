@@ -13,12 +13,12 @@
 | 18/0101617  |  Guilherme de Morais |
 | 18/0102087  |  Ian Fillipe |
 | 18/0113666  |  Ítalo Guimarães |
-| 18/0102656  |  Ítalo Vinicius |
+| 18/0102656  |  Ítalo Vinícius |
 | 20/0043111  |  Ricardo De Castro |
 
 ## Sobre 
 <p style="text-indent: 20px; text-align: justify">
-Para a entrega do paradigma lógico, foi escolhido o jogo clássico de tabuleiro Cara A Cara, no qual o objetivo é descobrir as pessoas (peças) do outro jogador, através de dicas sobre as características únicas de cada peça do jogador. Nessa versão, o jogador tentara adivinhar a pessoa que a máquina ira gerar a partir de uma base de dados que foi criada baseada no verdadeiro Cara A cara, advinhando se a pessoa escolhida possui ou não as características.
+Para a entrega do paradigma lógico, foi escolhido o jogo clássico de tabuleiro Cara-a-Cara, no qual o objetivo é descobrir as pessoas (peças) do outro jogador, através de dicas sobre as características únicas de cada peça do jogador. Nessa versão, o jogador tentara adivinhar a pessoa que a máquina ira gerar a partir de uma base de dados que foi criada baseada no verdadeiro Cara-a-cara, adivinhando se a pessoa escolhida possui ou não as características.
 </p>
 
 ## Screenshots
@@ -26,7 +26,7 @@ Adicione 2 ou mais screenshots do projeto em termos de interface e/ou funcioname
 
 ## Instalação 
 **Linguagens**: PROLOG<br>
-**Tecnologias**: xxxxxx<br>
+**Tecnologias**: SWI<br>
 Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
 Insira um manual ou um script para auxiliar ainda mais.
 Gifs animados e outras ilustrações são bem-vindos!
@@ -55,7 +55,7 @@ Apresente, brevemente, como cada membro do grupo contribuiu para o projeto.
 | Guilherme de Morais  |  - | preencher |
 | Ítalo Alves  |  - | preencher |
 | Ian Fillipe  | - | preencher |
-| Ítalo Vinícius  | - | preencher |
+| Ítalo Vinícius  | Participei de grande parte do desenvolvimento da lógica do jogo e para resolver os problemas que estávamos tendo | Excelente |
 | Ricardo Castro  | - | preencher |
 
 ## Outros 
