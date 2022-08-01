@@ -1,5 +1,7 @@
 :- initialization(menu).
 
+% Gabriel Avelino
+
 menu:-  repeat,	
 	consult('./personagens.pl'),
 	write('*** Cara-a-Cara ***'), nl,
@@ -17,8 +19,7 @@ opcao(1):- introducao,!.
 opcao(2):- tutorial, !.
 opcao(_):- write('Opcao inválida'), nl, !.
 
-% criar uma lista das pessoas
-% sortear um personagem da lista
+% Ricardo
 
 tutorial:-
 
@@ -43,6 +44,8 @@ menututorial:-
 	opcaoMenuTutorial(1):- introducao, !.
 	opcaoMenuTutorial(2):- menu, !.
 
+% Ítalo Alves
+
 introducao:-
 	% Acessa tamanho da lista
 	consult('./personagens.pl'),
@@ -54,8 +57,9 @@ introducao:-
 	findall(P, pessoa(P), L),
 	jogo(L), !.
 
+% Ítalo Vinicius
 
-escolherPersonagem :- 
+escolherPersonagem :-
 	findall(P, pessoa(P), Pessoas),
 
 	% sortear um personagem da lista
@@ -75,6 +79,8 @@ escolherPersonagem :-
 	nb_setval(tentativas, 5),
 	!.
 
+% Guilherme
+
 subtrai :-
 	nb_getval(tentativas, X),
     Y is (X - 1),
@@ -85,6 +91,8 @@ subtrai :-
 		chutarNome
 		;
 		nl).
+
+% Gabriel Bonifácio
 
 jogo([]).
 jogo(L):-
@@ -153,6 +161,8 @@ opcaoJogo(_, L) :-
 	jogo(L),
 	!.
 
+% Ian Fillipe
+
 inter([], _, []).
 inter([H1|T1], L2, [H1|Res]) :-
     member(H1, L2),
@@ -170,6 +180,9 @@ chutarNome:-
 	write('Poxa. Voce errou! HAHAHAHA. Quem sabe na próxima vez?')), nl,
 	halt,
 	!.
+
+
+% Guilherme
 
 cabeloExiste(L):-
 
