@@ -33,7 +33,7 @@ Para a entrega do paradigma lógico, foi escolhido o jogo clássico de tabuleiro
 **Linguagens**: PROLOG<br>
 **Tecnologias**: SWI-Prolog<br>
 
-(É necessário para rodar esta aplicação SWI-Prolog e recomenda-se rodá-la no ambiente Ubuntu)
+(É necessário para rodar esta aplicação SWI-Prolog e recomenda-se rodá-la no ambiente Ubuntu ou utilizando no windows o WSL)
 
 ## Uso 
 1- No terminal, basta executar o seguinte comando:
@@ -42,7 +42,7 @@ Para a entrega do paradigma lógico, foi escolhido o jogo clássico de tabuleiro
 swipl menu.pl
 ```
 
-A partir daí, basta jogar conforme as instruções descritas no terminal, lembrando sempre de adicionar um ponto final(.) ao final de cada entrada
+A partir daí, basta jogar conforme as instruções descritas no terminal, lembrando sempre de adicionar um ponto final(.) ao final de cada entrada.
 
 ## Vídeo
 Adicione 1 ou mais vídeos com a execução do projeto.
@@ -58,7 +58,7 @@ TEMPO: +/- 15min
 |Nome do Membro | Contribuição | Significância da Contribuição para o Projeto (Excelente/Boa/Regular/Ruim/Nula) |
 | -- | -- | -- |
 | Álvaro Leles  | Participei das definições iniciais do projeto, como construção da metodologia e da base de conhecimento e contribuí com o desenvolvimento inicial e final do projeto principalmente  | Boa |
-| Gabriel Avelino  |  - | preencher |
+| Gabriel Avelino  |  Participei das criações do menu e da lógica do projeto | Boa |
 | Gabriel Bonifácio  |  - | preencher |
 | Guilherme de Morais  |  - | preencher |
 | Ítalo Alves  |  - | preencher |
