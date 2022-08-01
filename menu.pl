@@ -2,57 +2,60 @@
 
 menu:-  repeat,	
 	consult('./personagens.pl'),
-	write('*** Cara a Cara ***'), nl,
-	write('1. Comecar a jogar'), nl,
+	write('*** Cara-a-Cara ***'), nl,
+	write('1. Começar a jogar'), nl,
 	write('2. Tutorial'), nl,
 	write('0. Sair'), nl,
 	read(X),
-	option(X),
+	tty_clear,
+	opcao(X),
     X == 0,
 	!.
 
-option(0):- halt, !.
-option(1):- introducao,!.
-option(2):- tutorial, !.
-option(_):- write('Opcao invalida'), nl, !.
+opcao(0):- halt, !.
+opcao(1):- introducao,!.
+opcao(2):- tutorial, !.
+opcao(_):- write('Opcao inválida'), nl, !.
 
 % criar uma lista das pessoas
 % sortear um personagem da lista
 
 tutorial:-
 
-	nl, write('Bem-vindo ao tutorial do jogo cara-a-cara'), nl,
-	nl, write('O jogo cara-a-cara tem como objetivo adivinhar uma pessoa de acordo com suas características'),nl,
-	nl, write('O jogo vai sortear aleaórioamente uma pessoa e você tem que adivinhar com base nas características dela'),nl,
-	nl, write('Você tem direito a cinco perguntas e o jogo vai atualizando a lista de nomes de acordo com as suas perguntas, então pense bem na hora de escolher elas'),nl,
-	nl, write('Quando tiver certeza da sua resposta, você tem até dois palpites para descobrir a pessoa sorteada'),nl,
+	nl, write('*** Tutorial ***'), nl,
+	nl, write('Bem-vindo ao tutorial do jogo Cara-a-Cara!'), nl,
+	nl, write('O jogo Cara-a-Cara tem como objetivo adivinhar uma pessoa de acordo com suas características'),nl,
+	nl, write('O jogo vai sortear aleatóriamente uma pessoa e você tem que adivinhar com base nas características dela'),nl,
+	nl, write('Você tem direito a cinco perguntas e o jogo vai atualizando a lista de nomes de acordo com as suas perguntas, então pense bem na hora de escolhê-las'),nl,
+	nl, write('Quando tiver certeza da sua resposta, você pode fazer um palpite para descobrir a pessoa sorteada'),nl,
 	nl, write('Agora que você já sabe como jogar, boa sorte'),nl,
 	menututorial,
 	!.
 
 menututorial:- 
-	nl, write('1. Começar a jogar'),nl,
-	write('2. Voltar ao menu principal'),nl,
+	nl, write('1. Começar a jogar'),
+	nl, write('2. Voltar ao menu principal'),nl,
 	read(Z),
-	opcao(Z),
+	tty_clear,
+	opcaoMenuTutorial(Z),
 	!.
 
-	opcao(1):- introducao, !.
-	opcao(2):- menu, !.
+	opcaoMenuTutorial(1):- introducao, !.
+	opcaoMenuTutorial(2):- menu, !.
 
 introducao:-
 	% Acessa tamanho da lista
-	length(Pessoas, TamanhoLista),
 	consult('./personagens.pl'),
-	nl, write('Seja bem-vindo ao jogo Cara a Cara.'), nl, write('Sugiro que veja o tutorial antes de jogarmos (basta apertar 2). '), 
-	write('Caso ja saiba como funciona, vamos la!'), nl, nl, write('-> Sorteamos algum dos 34 personagens e voce precisa adivinhar quem. Para isso, nos faca algumas das seguintes perguntas 
-digitando o numero correspondente da pergunta (1, 2, etc...):'), nl,
+	nl, write('Seja bem-vindo ao jogo Cara-a-Cara.'), 
+	nl, write('Sugiro que veja o tutorial antes de jogarmos (basta apertar 2). '), 
+	write('Caso ja saiba como funciona, vamos la!'), nl,
+	nl, write('-> Sorteamos algum dos 34 personagens e você precisa adivinhar quem. Para isso, nos faca algumas das seguintes perguntas digitando o número correspondente da pergunta (1, 2, etc...):'), nl,
 	escolherPersonagem,
 	findall(P, pessoa(P), L),
 	jogo(L), !.
 
 
-escolherPersonagem() :- 
+escolherPersonagem :- 
 	findall(P, pessoa(P), Pessoas),
 
 	% sortear um personagem da lista
@@ -78,8 +81,8 @@ subtrai :-
 	nb_setval(tentativas, Y),
 	
 	(Y < 0 ->
-		nl,write('Acabaram suas perguntas! voce precisa chutar um personagem.'),nl,
-		chutarNome()
+		nl,write('Acabaram suas perguntas! Você precisa chutar um personagem.'),nl,
+		chutarNome
 		;
 		nl).
 
@@ -87,28 +90,28 @@ jogo([]).
 jogo(L):-
 
 	nb_getval(tentativas, X),
-	nl, write('Voce tem '), write(X), write(' tentativas restantes.'), nl,
+	nl, write('Você tem '), write(X), write(' tentativas restantes.'), nl,
 
 	% printar os personagens restantes
-	nl, write('Estes sao os personagens que ainda podem ser o escolhido: '), 
+	nl, write('Estes são os personagens que ainda podem ser o escolhido: '), 
 	write(L), nl,
 
 	subtrai,	% modifica a variavel global de tentativas, diminuindo 1
 
 	% printar o personagem sorteado
-	b_getval(personagem, Escolhido),
-	%nl, write('O personagem sorteado foi: '), write(Escolhido), nl,
-	nl, write('Opcoes:'), nl,
-	nl, write('0 - Chutar nome'), nl,
-	nl, write('1 - O personagem escolhido tem cabelo?'),
-	nl, write('2 - O personagem escolhido usa brinco?'),
-	nl, write('3 - O personagem escolhido eh uma mulher?'),
-	nl, write('4 - O personagem escolhido eh um homem?'),
-	nl, write('5 - A cor do cabelo do personagem eh castanha?'),
-	nl, write('6 - A cor do cabelo do personagem eh loira?'),
-	nl, write('7 - A cor do cabelo do personagem eh preta?'),
-	nl, write('8 - A cor do cabelo do personagem eh branca?'),
-	nl, write('9 - A cor do cabelo do personagem eh ruiva?'),
+	% b_getval(personagem, Escolhido),
+	% nl, write('O personagem sorteado foi: '), write(Escolhido), nl,
+	nl, write('Opções:'), nl,
+	nl, write(' 0 - Chutar nome'),
+	nl, write(' 1 - O personagem escolhido tem cabelo?'),
+	nl, write(' 2 - O personagem escolhido usa brinco?'),
+	nl, write(' 3 - O personagem escolhido eh uma mulher?'),
+	nl, write(' 4 - O personagem escolhido eh um homem?'),
+	nl, write(' 5 - A cor do cabelo do personagem eh castanha?'),
+	nl, write(' 6 - A cor do cabelo do personagem eh loira?'),
+	nl, write(' 7 - A cor do cabelo do personagem eh preta?'),
+	nl, write(' 8 - A cor do cabelo do personagem eh branca?'),
+	nl, write(' 9 - A cor do cabelo do personagem eh ruiva?'),
 	nl, write('10 - O personagem escolhido usa oculos?'),
 	nl, write('11 - O personagem escolhido usa chapeu?'),
 	nl, write('12 - O personagem escolhido usa boina?'),
@@ -118,34 +121,37 @@ jogo(L):-
 	nl, write('16 - O personagem escolhido tem cor de pele branca?'),
 	nl, write('17 - O personagem escolhido tem cor de pele preta?'), nl,
 	read(Y),
-	optionJogo(Y, L), 
+	tty_clear,
+	opcaoJogo(Y, L), 
 	%Y == 0,
 	!.
 
 
-%optionJogo(_, []):-
-%	nl, write('Opcao invalida de jogo'), nl, !.
 
-optionJogo(0, L):- chutarNome(),!.
-optionJogo(1, L):- cabeloExiste(L), !.
-optionJogo(2, L):- brincoTem(L),  !.
-optionJogo(3, L):- sexoMulher(L), !.
-optionJogo(4, L):- sexoHomem(L), !.
-optionJogo(5, L):- cabeloCastanho(L), !.
-optionJogo(6, L):- cabeloLoiro(L), !.
-optionJogo(7, L):- cabeloPreto(L), !.
-optionJogo(8, L):- cabeloBranco(L), !.
-optionJogo(9, L):- cabeloRuivo(L), !.
-optionJogo(10, L):- oculosUsa(L), !.
-optionJogo(11, L):- chapeuUsa(L), !.
-optionJogo(12, L):- boinaUsa(L), !.
-optionJogo(13, L):- boneUsa(L), !.
-optionJogo(14, L):- bigodeTem(L), !.
-optionJogo(15, L):- barbaTem(L), !.
-optionJogo(16, L):- corBranca(L), !.
-optionJogo(17, L):- corNegra(L), !.
+opcaoJogo(0, L):- chutarNome, L, !.
+opcaoJogo(1, L):- cabeloExiste(L), L, !.
+opcaoJogo(2, L):- brincoTem(L), L, !.
+opcaoJogo(3, L):- sexoMulher(L), L, !.
+opcaoJogo(4, L):- sexoHomem(L), L, !.
+opcaoJogo(5, L):- cabeloCastanho(L), L, !.
+opcaoJogo(6, L):- cabeloLoiro(L), L, !.
+opcaoJogo(7, L):- cabeloPreto(L), L, !.
+opcaoJogo(8, L):- cabeloBranco(L), L, !.
+opcaoJogo(9, L):- cabeloRuivo(L), L, !.
+opcaoJogo(10, L):- oculosUsa(L), L, !.
+opcaoJogo(11, L):- chapeuUsa(L), L, !.
+opcaoJogo(12, L):- boinaUsa(L), L, !.
+opcaoJogo(13, L):- boneUsa(L), L, !.
+opcaoJogo(14, L):- bigodeTem(L), L, !.
+opcaoJogo(15, L):- barbaTem(L), L, !.
+opcaoJogo(16, L):- corBranca(L), L, !.
+opcaoJogo(17, L):- corNegra(L), L, !.
 
 
+opcaoJogo(_, L) :-
+	nl, write('Opcao inválida de jogo'), nl,
+	jogo(L),
+	!.
 
 inter([], _, []).
 inter([H1|T1], L2, [H1|Res]) :-
@@ -158,9 +164,10 @@ chutarNome:-
 	nl, write('Digite o nome do personagem: '),
 	b_getval(personagem, Escolhido),
 	read(Nome), nl,
-	(Nome == Escolhido -> write('Parabens voce acertou o personagem escolhido!') 
+	tty_clear,
+	(Nome == Escolhido -> write('Parabéns voce acertou o personagem escolhido!') 
 	; 
-	write('Poxa. Voce errou! Quem sabe na proxima vez?')), nl,
+	write('Poxa. Voce errou! HAHAHAHA. Quem sabe na próxima vez?')), nl,
 	halt,
 	!.
 
