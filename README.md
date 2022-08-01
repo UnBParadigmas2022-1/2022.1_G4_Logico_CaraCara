@@ -60,7 +60,7 @@ TEMPO: +/- 15min
 | Álvaro Leles  | Participei das definições iniciais do projeto, como construção da metodologia e da base de conhecimento e contribuí com o desenvolvimento inicial e final do projeto principalmente  | Boa |
 | Gabriel Avelino  |  Participei das criações do menu e da lógica do projeto | Boa |
 | Gabriel Bonifácio  |  - | preencher |
-| Guilherme de Morais  |  - | preencher |
+| Guilherme de Morais  |  Participei da criação das lógicas para contagem de tentativas, criação de condicionais e lógica de filtragem de personagens sobre as perguntas feitas pelo jogador. | Excelente |
 | Ítalo Alves  |  - | preencher |
 | Ian Fillipe  | - | preencher |
 | Ítalo Vinícius  | Participei de grande parte do desenvolvimento da lógica do jogo e para resolver os problemas que estávamos tendo | Excelente |
