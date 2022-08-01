@@ -22,14 +22,13 @@ opcao(_):- write('Opcao inválida'), nl, !.
 % Ricardo
 
 tutorial:-
-
 	nl, write('*** Tutorial ***'), nl,
 	nl, write('Bem-vindo ao tutorial do jogo Cara-a-Cara!'), nl,
-	nl, write('O jogo Cara-a-Cara tem como objetivo adivinhar uma pessoa de acordo com suas características'),nl,
-	nl, write('O jogo vai sortear aleatóriamente uma pessoa e você tem que adivinhar com base nas características dela'),nl,
-	nl, write('Você tem direito a cinco perguntas e o jogo vai atualizando a lista de nomes de acordo com as suas perguntas, então pense bem na hora de escolhê-las'),nl,
-	nl, write('Quando tiver certeza da sua resposta, você pode fazer um palpite para descobrir a pessoa sorteada'),nl,
-	nl, write('Agora que você já sabe como jogar, boa sorte'),nl,
+	nl, write('O jogo Cara-a-Cara tem como objetivo adivinhar uma pessoa de acordo com suas características'),
+	nl, write('O jogo vai sortear aleatoriamente uma pessoa e você tem que adivinhar com base nas características dela'),
+	nl, write('Você tem direito a cinco perguntas e o jogo vai atualizando a lista de nomes de acordo com as suas perguntas, então pense bem na hora de escolhê-las'),
+	nl, write('Quando tiver certeza da sua resposta, você pode fazer um palpite para descobrir a pessoa sorteada'),
+	nl, write('Agora que você já sabe como jogar, boa sorte'), nl,
 	menututorial,
 	!.
 
