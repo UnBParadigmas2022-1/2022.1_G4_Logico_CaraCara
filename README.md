@@ -35,8 +35,16 @@ Para a entrega do paradigma lógico, foi escolhido o jogo clássico de tabuleiro
 
 (É necessário para rodar esta aplicação SWI-Prolog e recomenda-se rodá-la no ambiente Ubuntu ou utilizando no windows o WSL)
 
+Para instalar o SWI-Prolog no Ubuntu, basta digitar os comandos:
+
+```
+sudo apt-add-repository ppa:swi-prolog/stable
+sudo apt-get update
+sudo apt-get install swi-prolog
+```
+
 ## Uso 
-1- No terminal, basta executar o seguinte comando:
+No terminal, basta executar o seguinte comando:
 
 ```
 swipl menu.pl
@@ -45,14 +53,8 @@ swipl menu.pl
 A partir daí, basta jogar conforme as instruções descritas no terminal, lembrando sempre de adicionar um ponto final(.) ao final de cada entrada.
 
 ## Vídeo
-Adicione 1 ou mais vídeos com a execução do projeto.
-Procure: 
-(i) Introduzir o projeto;
-(ii) Mostrar passo a passo o código, explicando-o, e deixando claro o que é de terceiros, e o que é contribuição real da equipe;
-(iii) Apresentar particularidades do Paradigma, da Linguagem, e das Tecnologias, e
-(iV) Apresentar lições aprendidas, contribuições, pendências, e ideias para trabalhos futuros.
-OBS: TODOS DEVEM PARTICIPAR, CONFERINDO PONTOS DE VISTA.
-TEMPO: +/- 15min
+
+#### [Apresentação final do projeto](https://youtu.be/DZVU1EvvL-4)
 
 ## Participações
 |Nome do Membro | Contribuição | Significância da Contribuição para o Projeto (Excelente/Boa/Regular/Ruim/Nula) |
@@ -68,10 +70,32 @@ TEMPO: +/- 15min
 
 ## Outros 
 Quaisquer outras informações sobre o projeto podem ser descritas aqui.
+
+
 (i) Lições Aprendidas;
+
+- Aprendizado sobre construção de bases de conhecimento e manipulá-las.
+- Entendemos como os fatos e regras funcionam além dos predicados fornecidos pelo SWI
+
 (ii) Percepções;
-(iii) Contribuições e Fragilidades, e
+
+Entendemos a importância e as consequências de uma base bem construída e estruturada para os futuros trabalhos feitos sobre ela. Também achamos a estrutura muito parecida com a linguagem Haskell, apesar de ser um paradigma diferente.
+
+(iii) Contribuições e Fragilidades
+
+- Quanto às contribuições, conseguimos fazer com que todos os integrantes desenvolvessem o projeto, com na maioria dos casos conseguindo ter contribuição necessária dos integrantes, por meio da metodologia que adotamos de pair programming, em que enquanto um desenvolvia, os outros ficavam em chamada juntos ajudando a relembrar as peculiaridades da linguagem e dando melhores ideias para ajudar a construir as regras necessárias para o nosso jogo.
+
+- Acreditamos que o nosso projeto tenha algumas fragilidades quanto às regras do jogo Cara a Cara original, pois não conseguimos construir por meio da linguagem Prolog todas as regras desse jogo - inclusive, faltando alguns detalhes que deixamos passar despercebido, por termos deixado para desenvolver o projeto muito em cima da hora - por os integrantes deste grupo terem demorado a ter um domínio satisfatório da linguagem necessário para a realização do que propusemos.
+
 (iV) Trabalhos Futuros.
+
+- Adicionar recursos visuais.
+
+- Modularizar o código, para aproveitar partes semelhantes do código.
+
+- Adicionar nome sorteado ao final do jogo mesmo que o jogador perca.
+
+- Adicionar mais personagens e mais características, dando assim mais dinâmica para o jogo.
 
 ## Fontes
 - [Tutorial de prolog](https://cs.union.edu/~striegnk/learn-prolog-now/html/)
