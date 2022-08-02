@@ -64,7 +64,7 @@ TEMPO: +/- 15min
 | Ítalo Alves  |  - | preencher |
 | Ian Fillipe  | Implementei a estratégia de realizar a interseção de listas para fazer a filtragem de personagens, participei da criação da regra 'jogo', e dei suporte no desenvolvimento de outra partes do projeto | Excelente |
 | Ítalo Vinícius  | Participei de grande parte do desenvolvimento da lógica do jogo e para resolver os problemas que estávamos tendo | Excelente |
-| Ricardo Castro  | - | preencher |
+| Ricardo Castro  | Contribuição para popular a base de dados e implementação dos menus e do tutorial. | Boa |
 
 ## Outros 
 Quaisquer outras informações sobre o projeto podem ser descritas aqui.
