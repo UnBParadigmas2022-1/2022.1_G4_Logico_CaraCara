@@ -61,7 +61,7 @@ TEMPO: +/- 15min
 | Gabriel Avelino  |  Participei das criações do menu e da lógica do projeto | Boa |
 | Gabriel Bonifácio  |  - | preencher |
 | Guilherme de Morais  |  - | preencher |
-| Ítalo Alves  |  - | preencher |
+| Ítalo Alves  |  Contribuição na criação dos personagens na base de dados, implementação do tutorial e das mensagens nos menus. | Boa |
 | Ian Fillipe  | - | preencher |
 | Ítalo Vinícius  | Participei de grande parte do desenvolvimento da lógica do jogo e para resolver os problemas que estávamos tendo | Excelente |
 | Ricardo Castro  | - | preencher |
