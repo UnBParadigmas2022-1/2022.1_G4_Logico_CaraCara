@@ -62,7 +62,7 @@ TEMPO: +/- 15min
 | Gabriel Bonifácio  | Criação da função Jogo, da introdução inicial e contribuição na funcionalidade de chutar o nome, além de participações em outras funções.  | Excelente |
 | Guilherme de Morais  |  Participei da criação das lógicas para contagem de tentativas, criação de condicionais e lógica de filtragem de personagens sobre as perguntas feitas pelo jogador. | Excelente |
 | Ítalo Alves  |  - | preencher |
-| Ian Fillipe  | - | preencher |
+| Ian Fillipe  | Implementei a estratégia de realizar a interseção de listas para fazer a filtragem de personagens, participei da criação da regra 'jogo', e dei suporte no desenvolvimento de outra partes do projeto | Excelente |
 | Ítalo Vinícius  | Participei de grande parte do desenvolvimento da lógica do jogo e para resolver os problemas que estávamos tendo | Excelente |
 | Ricardo Castro  | - | preencher |
 
